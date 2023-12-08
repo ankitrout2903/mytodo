@@ -1,7 +1,15 @@
+<!-- {% extends 'layouts/app.html' %}
+
+{% block content %}
+
+{% endblock %} -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <title>django todo</title>
+    <h1>dashboard:{{request.user.username}}</h1>
+    <a href="{% url 'logout' %}" class="btn btn-default">Logout</a>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
@@ -23,13 +31,17 @@
               <input
                 type="text"
                 class="form-control"
-                id="tite"
-                placeholder="Enter title"
-                name="title"
+                id="title"
+                <!--
+                Fix
+                typo
+                here
+                --
               />
+              placeholder="Enter title" name="title" />
             </div>
             <div class="form-group">
-              <label for="description">description:</label>
+              <label for="description">Description:</label>
               <textarea class="form-control" name="description"></textarea>
             </div>
 
@@ -48,23 +60,32 @@
           </tr>
         </thead>
         <tbody>
-          {%for todo in todos%}
+          {% for todo in todos %}
           <tr>
-            <td>{{forloop.counter}}</td>
+            <td>{{ forloop.counter }}</td>
 
-            <td>{{todo.title}}</td>
-            <td>{{todo.description}}</td>
+            <td>{{ todo.title }}</td>
+            <td>{{ todo.description }}</td>
             <td>
               {% if todo.completed %}
-              <span class = "badge badge-sucess">Completed</span>
+              <span class="badge badge-success">Completed</span>
+              <!-- Fix typo here -->
               {% else %}
-              <a class="btn btn-sm btn-dark" href="{% url 'complete_todo' todo.id %}">complete</a>
-              
+              <a
+                class="btn btn-sm btn-dark"
+                href="{% url 'complete_todo' todo.id %}"
+                >Complete</a
+              >
+
               {% endif %}
-              <a class="btn btn-sm btn-danger" href="{% url 'delete_todo' todo.id %}">delete</a>
+              <a
+                class="btn btn-sm btn-danger"
+                href="{% url 'delete_todo' todo.id %}"
+                >Delete</a
+              >
             </td>
           </tr>
-          {%endfor%}
+          {% endfor %}
         </tbody>
       </table>
     </div>

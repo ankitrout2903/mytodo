@@ -1,5 +1,5 @@
 """
-URL configuration for mytodo project.
+URL configuration for auth_project project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.0/topics/http/urls/
@@ -17,12 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-
-
 urlpatterns = [
-    path('todo/',include('todo.urls')),
     path('admin/', admin.site.urls),
     path('auth/',include('auth_app.urls'))
-
-
 ]
